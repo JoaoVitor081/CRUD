@@ -21,27 +21,30 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Funcionário A</td>
-            <td>Cargo A</td>
-            <td>Setor A</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Funcionário B</td>
-            <td>Cargo B</td>
-            <td>Setor B</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
-          
+
+        <?php
+            $sql = "SELECT f.FuncionarioID AS ID, f.Nome AS Nome, c.Nome AS Cargo, s.Nome AS Setor
+              FROM funcionarios f
+              JOIN cargos c ON f.CargoID = c.CargoID
+              JOIN setor s ON f.SetorID = s.SetorID";
+            
+            $resultado = mysqli_query($conexao, $sql);
+            
+            while ($linha = mysqli_fetch_assoc($resultado)) {
+                echo '
+                <tr>
+                    <td>'.$linha['ID'].'</td>
+                    <td>'.$linha['Nome'].'</td>
+                    <td>'.$linha['Cargo'].'</td>
+                    <td>'.$linha['Setor'].'</td>
+                    <td>
+                        <a href="#" class="btn btn-edit">Editar</a>
+                        <a href="#" class="btn btn-delete">Excluir</a>
+                    </td>
+                </tr>';
+            }
+            ?>
+            
         </tbody>
       </table>
     </div>
