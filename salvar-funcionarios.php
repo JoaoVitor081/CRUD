@@ -24,9 +24,23 @@ include_once './include/header.php';
           <input type="text" placeholder="RG">
           <select>
             <option value="">Cargo</option>
+            <?php
+            $sql = 'SELECT * FROM funcionarios;';
+            $resultado = mysqli_query($conexao, $sql);
+            while ( $row = mysqli_fetch_assoc($resultado) ) {
+            echo '<option value="' . $row["FuncionarioID"] .  '">' . $row['Nome'] . '</option>';
+           }
+  ?>
           </select>
           <select>
             <option value="">Setor</option>
+            <?php
+            $sql = 'SELECT * FROM setor;';
+            $resultado = mysqli_query($conexao, $sql);
+            while ( $row = mysqli_fetch_assoc($resultado) ) {
+            echo '<option value="' . $row["SetorID"] .  '">' . $row['Nome'] . '</option>';
+          }
+  ?>
           </select>
           <button type="submit">Salvar</button>
         </form>
