@@ -25,10 +25,10 @@ include_once './include/header.php';
           <select>
             <option value="">Cargo</option>
             <?php
-            $sql = 'SELECT * FROM funcionarios;';
+            $sql = 'SELECT * FROM cargos;';
             $resultado = mysqli_query($conexao, $sql);
             while ( $row = mysqli_fetch_assoc($resultado) ) {
-            echo '<option value="' . $row["FuncionarioID"] .  '">' . $row['Nome'] . '</option>';
+            echo '<option value="' . $row["CargooID"] .  '">' . $row['Nome'] . '</option>';
            }
   ?>
           </select>
