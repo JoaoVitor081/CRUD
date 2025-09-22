@@ -8,15 +8,16 @@ $acao = $_GET['acao'];
 $id = $_GET['id'];
 // validacao
 switch ($acao) {
-    case 'excluir':
-        $sql = "DELETE FROM produtos WHERE ProdutosID = $id";
-        if (mysqli_query($conexao, $sql)) {
-            echo "Registro excluído com sucesso";
-        } else {
-            echo "Erro ao excluir registro: " . mysqli_error($conexao);
-        }
-        header("Location: ../lista-produtos.php");
-        break;
+        case 'excluir':
+            $sql = 'DELETE FROM produtos WHERE ProdutosID = '.$id;
+    
+            if (mysqli_query($conexao, $sql)) {
+                header("Location: ../lista-produtos.php?msg=sucesso");
+                exit;
+            } else {
+                header("msg=erro");
+                exit;
+            }        
     
     default:
         # code...

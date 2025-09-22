@@ -38,7 +38,7 @@ include_once './include/header.php';
                     <td>R$ '.number_format($linha['Preco'], 2, ',', '.').'</td>
                     <td>
                         <a href="#" class="btn btn-edit">Editar</a>
-                        <a href="#" class="btn btn-delete">Excluir</a>
+                        <a href="./action/produtos.php?acao=excluir&id='.$linha['ID'].'" class="btn btn-delete">Excluir</a>
                     </td>
                   </tr>';
             }

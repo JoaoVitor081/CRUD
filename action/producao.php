@@ -6,17 +6,18 @@ include_once   '../include/conexao.php';
 // captura a acao dos dados
 $acao = $_GET['acao'];
 $id = $_GET['id'];
-// validacao
+
 switch ($acao) {
     case 'excluir':
-        $sql = "DELETE FROM producao WHERE ProducaoID = $id";
+        $sql = 'DELETE FROM producao WHERE ProducaoID = '.$id;
+
         if (mysqli_query($conexao, $sql)) {
-            echo "Registro excluído com sucesso";
+            header("Location: ../lista-producao.php?msg=sucesso");
+            exit;
         } else {
-            echo "Erro ao excluir registro: " . mysqli_error($conexao);
-        }
-        header("Location: ../lista-producao.php");
-        break;
+            header("msg=erro");
+            exit;
+        }        
     
     default:
         # code...
